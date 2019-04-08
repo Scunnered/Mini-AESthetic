@@ -199,7 +199,6 @@ public String encryptString(String startingString, String startKey){
         character = convertToArray(charAsBinaryString);                         // Convert binary string a 2x2 array of int
         cipherState = encryptChar(character);                                   // Encrypt this array and return it
         
-
         finalString += convertToString(cipherState);                            // Convert encrypted block back to a string and append it to finalString
     }   
     return finalString;
@@ -352,7 +351,7 @@ public class MiniAESTesting {
         MiniAES encryption1 = new MiniAES();
         
         String key = "0011100101100111";
-        String text = "if god real, why my pp hurt?";
+        String text = "ok this is some text";
         
         String encryptedText = encryption1.encryptString(text, key);
         String decryptedText = encryption1.decryptString(encryptedText,key);
@@ -365,6 +364,8 @@ public class MiniAESTesting {
         System.out.println("Plaintext: "+encryptedText);
         System.out.println("Result: "+decryptedText);
         
-        }
+        
+        
+         }
     
 }
