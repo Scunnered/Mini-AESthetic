@@ -270,7 +270,7 @@ private int[][] encryptChar(int[][] character){
     cipherState = substitutions.nibbleSub(cipherState, false);
     shiftRows();
     addRoundKey(cipherState, keys.getKey_2());
-                                                                                // Order of operations for an encryption
+                                                                                // The order of operations for an encryption
     return cipherState;
 }
     
