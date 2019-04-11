@@ -37,6 +37,8 @@ public class GUI extends javax.swing.JFrame {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1024, 768));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         encryptButton.setBackground(new java.awt.Color(153, 51, 255));
