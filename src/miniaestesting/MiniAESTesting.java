@@ -351,7 +351,7 @@ public class MiniAESTesting {
     public static void main(String[] args) {
         MiniAES encryption1 = new MiniAES();
         
-        String key = "0011100101100111";
+        /*String key = "0011100101100111";
         String text = "ok this is some text";
         
         String encryptedText = encryption1.encryptString(text, key);
@@ -364,7 +364,9 @@ public class MiniAESTesting {
         System.out.println("\nKey: "+key);
         System.out.println("Plaintext: "+encryptedText);
         System.out.println("Result: "+decryptedText);
-        
+        */
+        GUI master = new GUI();
+        master.run();
         }
     
 }

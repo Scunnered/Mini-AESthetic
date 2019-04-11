@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package miniaestesting;
-
+import javax.swing.*;
 /**
  *
  * @author 1105864
  */
+
 public class GUI extends javax.swing.JFrame {
 
     /**
@@ -84,7 +85,7 @@ public class GUI extends javax.swing.JFrame {
         enterKeyField.setBounds(50, 170, 930, 50);
 
         outputField.setColumns(20);
-        outputField.setForeground(new java.awt.Color(255, 255, 255));
+        outputField.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         outputField.setRows(5);
         jScrollPane1.setViewportView(outputField);
 
@@ -100,13 +101,28 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void encryptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encryptButtonActionPerformed
-        // TODO add your handling code here:
+        MiniAES encryption1 = new MiniAES();
+        
+        String text, key = "";
+        
+        enterKeyField.setInputVerifier(new keyVerify());
+        
+        text = enterPlaintextField.getText();
+        key = enterKeyField.getText();
+        
+        outputField.setText(encryption1.encryptString(text, key));// TODO add your handling code here:
     }//GEN-LAST:event_encryptButtonActionPerformed
-
+        
+        
     private void decryptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decryptButtonActionPerformed
-        // TODO add your handling code here:
+        MiniAES encryption1 = new MiniAES();
+        String text, key; 
+        text = enterPlaintextField.getText();
+        key = enterKeyField.getText();
+        outputField.setText(encryption1.decryptString(text, key));
     }//GEN-LAST:event_decryptButtonActionPerformed
 
+    
     private void enterPlaintextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterPlaintextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_enterPlaintextFieldActionPerformed
@@ -149,6 +165,14 @@ public class GUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static void run() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GUI().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
@@ -160,3 +184,18 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea outputField;
     // End of variables declaration//GEN-END:variables
 }
+
+class keyVerify extends InputVerifier {
+   
+    public boolean verify(JComponent input) {
+        
+        try {
+            JTextField inputText = (JTextField) input;
+            return (inputText.getText().length() < 16); 
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+
+}
+     }
