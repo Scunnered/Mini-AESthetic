@@ -127,7 +127,7 @@ public class GUI extends javax.swing.JFrame {
   
         else { 
         text = enterPlaintextField.getText();
-        outputField.setText(encryption1.encryptString(text, key));// TODO add your handling code here:
+        outputField.setText(encryption1.decryptString(text, key));// TODO add your handling code here:
         }
     }//GEN-LAST:event_decryptButtonActionPerformed
 
