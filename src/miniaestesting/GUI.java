@@ -11,7 +11,7 @@ import javax.swing.*;
  */
 
 public class GUI extends javax.swing.JFrame {
-
+    private JLabel validationLabel;
     /**
      * Creates new form GUI
      * Mini-AES.png, encryptButton.png and DecryptButton.png images will need to be added to the miniaestesting project files
@@ -95,31 +95,40 @@ public class GUI extends javax.swing.JFrame {
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/miniaestesting/Mini-Aes.png"))); // NOI18N
         Background.setText("jLabel1");
         getContentPane().add(Background);
-        Background.setBounds(0, 0, 1062, 768);
+        Background.setBounds(0, 0, 1069, 768);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void encryptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encryptButtonActionPerformed
         MiniAES encryption1 = new MiniAES();
-        
         String text, key = "";
-        
-        enterKeyField.setInputVerifier(new keyVerify());
-        
-        text = enterPlaintextField.getText();
         key = enterKeyField.getText();
         
+        if (key.length()!=16 || (key.matches("[01]+")==false)){  //User have not entered anything. 
+        JOptionPane.showMessageDialog(null,"Please enter a 16-bit binary number");
+        enterKeyField.requestFocusInWindow();}
+  
+        else { 
+        text = enterPlaintextField.getText();
         outputField.setText(encryption1.encryptString(text, key));// TODO add your handling code here:
+        } 
     }//GEN-LAST:event_encryptButtonActionPerformed
         
         
     private void decryptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decryptButtonActionPerformed
         MiniAES encryption1 = new MiniAES();
-        String text, key; 
-        text = enterPlaintextField.getText();
+        String text, key = "";
         key = enterKeyField.getText();
-        outputField.setText(encryption1.decryptString(text, key));
+        
+        if (key.length()!=16 || (key.matches("[01]+")==false)){  //User have not entered anything. 
+        JOptionPane.showMessageDialog(null,"Please enter a 16-bit binary number");
+        enterKeyField.requestFocusInWindow();}
+  
+        else { 
+        text = enterPlaintextField.getText();
+        outputField.setText(encryption1.encryptString(text, key));// TODO add your handling code here:
+        }
     }//GEN-LAST:event_decryptButtonActionPerformed
 
     
@@ -131,6 +140,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_enterKeyFieldActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -185,17 +195,4 @@ public class GUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 
-class keyVerify extends InputVerifier {
-   
-    public boolean verify(JComponent input) {
-        
-        try {
-            JTextField inputText = (JTextField) input;
-            return (inputText.getText().length() < 16); 
-        } catch (NumberFormatException e) {
-            return false;
-        }
-
-
-}
-     }
+    
