@@ -38,7 +38,7 @@ public class GUI extends javax.swing.JFrame {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1024, 768));
+        setTitle("Mini-AES(thetic)");
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -95,7 +95,7 @@ public class GUI extends javax.swing.JFrame {
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/miniaestesting/Mini-Aes.png"))); // NOI18N
         Background.setText("jLabel1");
         getContentPane().add(Background);
-        Background.setBounds(0, 0, 1069, 768);
+        Background.setBounds(0, 0, 1062, 768);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
