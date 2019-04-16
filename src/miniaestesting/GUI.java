@@ -39,6 +39,7 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mini-AES(thetic)");
+        setPreferredSize(new java.awt.Dimension(1024, 768));
         setResizable(false);
         getContentPane().setLayout(null);
 
