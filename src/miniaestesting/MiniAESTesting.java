@@ -202,7 +202,7 @@ public String encryptString(String startingString, String startKey){
         finalString += convertToString(cipherState);                            // Convert encrypted block back to a string and append it to finalString
     }   
     return finalString;
-} 
+}
 
 public String decryptString(String startingString, String startKey){
     this.finalString = "";                                                      // Initialises finalString to an empty string
@@ -222,7 +222,86 @@ public String decryptString(String startingString, String startKey){
 
     return finalString;
 }
+
+public String encryptBinary(String startingString, String startKey){
+    
+    this.finalString = "";                                                      // Initialises finalString to an empty string
+    this.keys = new KeySet(convertToArray(startKey));
+
+    character = convertToArray(startingString);                         // Convert binary string a 2x2 array of int
+    cipherState = encryptChar(character);                                   // Encrypt this array and return it
+    String toConvert = convertToString(cipherState);
+    char[] array = toConvert.toCharArray();
+    String charAsBinaryString = Integer.toBinaryString(array[0]);
+    while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;}
+    //return finalString;
+    return charAsBinaryString;
+}
+
+public String decryptBinary(String startingString, String startKey){
+    
+    this.finalString = "";                                                      // Initialises finalString to an empty string
+    this.keys = new KeySet(convertToArray(startKey));
+
+    character = convertToArray(startingString);                         // Convert binary string a 2x2 array of int
+    cipherState = decryptChar(character);                                   // Encrypt this array and return it
+    String toConvert = convertToString(cipherState);
+    char[] array = toConvert.toCharArray();
+    String charAsBinaryString = Integer.toBinaryString(array[0]);
+    while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;}
+    //return finalString;
+    return charAsBinaryString;
+}
+
+public String encryptHex(String startingHex, String startKey){
+    
+    this.finalString = "";  // Initialises finalString to an empty string
+    String startingString = "";
+    String intermediate = "";
+    this.keys = new KeySet(convertToArray(startKey));
+    int hexValues[] = new int[startingHex.length()];
+    for(int i = 0; i < startingHex.length(); i++){                             // For each character in the ciphertext String
+        int hexVal = (int) startingHex.charAt(i);
+        String charAsBinaryString = Integer.toBinaryString(hexVal); // Convert it to a binary string
+        while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;} // Add leading zeros to make it 16 long
         
+        character = convertToArray(charAsBinaryString);                         // Convert binary string to a 2x2 array of int
+        cipherState = encryptChar(character);                                   // Decrypt this array and return it
+        String value = convertToString(cipherState);
+        intermediate += value;
+    }
+    char[] array = intermediate.toCharArray();
+    for (int i = 0; i < array.length; i++) {
+        finalString +=  String.format("%04x", (int) array[i]);
+    }
+    return finalString;
+}
+
+public String decryptHex(String startingHex, String startKey){
+    
+    this.finalString = "";  // Initialises finalString to an empty string
+    String startingString = "";
+    String intermediate = "";
+    this.keys = new KeySet(convertToArray(startKey));
+    int hexValues[] = new int[startingHex.length()];
+    for(int i = 0; i < startingHex.length(); i++){                             // For each character in the ciphertext String
+        int hexVal = (int) startingHex.charAt(i);
+        String charAsBinaryString = Integer.toBinaryString(hexVal); // Convert it to a binary string
+        while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;} // Add leading zeros to make it 16 long
+        
+        character = convertToArray(charAsBinaryString);                         // Convert binary string to a 2x2 array of int
+        cipherState = decryptChar(character);                                   // Decrypt this array and return it
+        String value = convertToString(cipherState);
+        intermediate += value;
+    }
+    char[] array = intermediate.toCharArray();
+    for (int i = 0; i < array.length; i++) {
+        finalString +=  String.format("%04x", (int) array[i]);
+    }
+    return finalString;
+}
+
+
 
 //-----------------------------//Conversion Methods//-----------------------------//
 
