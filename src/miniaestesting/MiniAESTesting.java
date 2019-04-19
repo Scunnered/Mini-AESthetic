@@ -227,7 +227,6 @@ public String encryptBinary(String startingString, String startKey){
     
     this.finalString = "";                                                      // Initialises finalString to an empty string
     this.keys = new KeySet(convertToArray(startKey));
-
     character = convertToArray(startingString);                         // Convert binary string a 2x2 array of int
     cipherState = encryptChar(character);                                   // Encrypt this array and return it
     String toConvert = convertToString(cipherState);
@@ -242,7 +241,6 @@ public String decryptBinary(String startingString, String startKey){
     
     this.finalString = "";                                                      // Initialises finalString to an empty string
     this.keys = new KeySet(convertToArray(startKey));
-
     character = convertToArray(startingString);                         // Convert binary string a 2x2 array of int
     cipherState = decryptChar(character);                                   // Encrypt this array and return it
     String toConvert = convertToString(cipherState);
@@ -256,48 +254,46 @@ public String decryptBinary(String startingString, String startKey){
 public String encryptHex(String startingHex, String startKey){
     
     this.finalString = "";  // Initialises finalString to an empty string
-    String startingString = "";
-    String intermediate = "";
     this.keys = new KeySet(convertToArray(startKey));
-    int hexValues[] = new int[startingHex.length()];
-    for(int i = 0; i < startingHex.length(); i++){                             // For each character in the ciphertext String
-        int hexVal = (int) startingHex.charAt(i);
-        String charAsBinaryString = Integer.toBinaryString(hexVal); // Convert it to a binary string
+    int lengthAtStart = startingHex.length();
+    while(startingHex.length()<16){startingHex=startingHex+"0";}
+    System.out.println(startingHex);
+    String[] hexArray = convertToArrayHex(startingHex);
+    for (int i = 0; i < hexArray.length; i++) {
+        String hex;
+        String charAsBinaryString;
+        int convert = Integer.parseInt(hexArray[i],16);
+        charAsBinaryString = Integer.toBinaryString(convert);
         while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;} // Add leading zeros to make it 16 long
-        
         character = convertToArray(charAsBinaryString);                         // Convert binary string to a 2x2 array of int
         cipherState = encryptChar(character);                                   // Decrypt this array and return it
-        String value = convertToString(cipherState);
-        intermediate += value;
+        hex = convertToString(cipherState);
+        finalString += hex.format("%04x",(int)hex.charAt(0));
     }
-    char[] array = intermediate.toCharArray();
-    for (int i = 0; i < array.length; i++) {
-        finalString +=  String.format("%04x", (int) array[i]);
-    }
+    finalString = finalString.substring(0,lengthAtStart);
     return finalString;
 }
 
 public String decryptHex(String startingHex, String startKey){
     
     this.finalString = "";  // Initialises finalString to an empty string
-    String startingString = "";
-    String intermediate = "";
     this.keys = new KeySet(convertToArray(startKey));
-    int hexValues[] = new int[startingHex.length()];
-    for(int i = 0; i < startingHex.length(); i++){                             // For each character in the ciphertext String
-        int hexVal = (int) startingHex.charAt(i);
-        String charAsBinaryString = Integer.toBinaryString(hexVal); // Convert it to a binary string
+    int lengthAtStart = startingHex.length();
+    while(startingHex.length()<16){startingHex=startingHex+"0";}
+    System.out.println(startingHex);
+    String[] hexArray = convertToArrayHex(startingHex);
+    for (int i = 0; i < hexArray.length; i++) {
+        String hex;
+        String charAsBinaryString;
+        int convert = Integer.parseInt(hexArray[i],16);
+        charAsBinaryString = Integer.toBinaryString(convert);
         while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;} // Add leading zeros to make it 16 long
-        
         character = convertToArray(charAsBinaryString);                         // Convert binary string to a 2x2 array of int
         cipherState = decryptChar(character);                                   // Decrypt this array and return it
-        String value = convertToString(cipherState);
-        intermediate += value;
+        hex = convertToString(cipherState);
+        finalString += hex.format("%04x",(int)hex.charAt(0));
     }
-    char[] array = intermediate.toCharArray();
-    for (int i = 0; i < array.length; i++) {
-        finalString +=  String.format("%04x", (int) array[i]);
-    }
+    finalString = finalString.substring(0,lengthAtStart);
     return finalString;
 }
 
@@ -318,7 +314,6 @@ public static String convertToString(int[][] array) {
         
         String charAsBinaryString = toFill[0][0] + toFill[0][1] + toFill[1][0] + toFill[1][1]; // Append nibbles together
         
-        
         int asInteger = Integer.parseInt(charAsBinaryString, 2);                // Parse an integer from the string
       
         String charAsString = Character.toString((char) asInteger);             // Typecast as char and convert to String
@@ -333,6 +328,18 @@ public static int[][] convertToArray(String toConvert) {
         newBlock[0][1] = Integer.parseInt(toConvert.substring(4,8), 2);
         newBlock[1][0] = Integer.parseInt(toConvert.substring(8,12), 2);
         newBlock[1][1] = Integer.parseInt(toConvert.substring(12,16), 2);
+                                                                                // Split a 16-bit binary string into four nibbles
+        
+        return newBlock;
+    }
+
+public static String[] convertToArrayHex(String toConvert) {
+        String[] newBlock = new String[4];                                       // Declare and initialise a new 2x2 array of int
+        
+        newBlock[0] = toConvert.substring(0,4);
+        newBlock[1] = toConvert.substring(4,8);
+        newBlock[2] = toConvert.substring(8,12);
+        newBlock[3] = toConvert.substring(12,16);
                                                                                 // Split a 16-bit binary string into four nibbles
         
         return newBlock;
@@ -427,8 +434,6 @@ private int hexSubstitution(int topRowElement, int bottomRowElement, int constRo
 }
 public class MiniAESTesting {
     public static void main(String[] args) {
-        MiniAES encryption1 = new MiniAES();
-        
         /*String key = "0011100101100111";
         String text = "ok this is some text";
         

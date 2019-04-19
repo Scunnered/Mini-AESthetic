@@ -95,14 +95,13 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SimSun" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Enter Plaintext"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enterPlaintextFieldActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="350" y="110" width="630" height="50"/>
+          <AbsoluteConstraints x="350" y="110" width="560" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -111,7 +110,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SimSun" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Enter Key"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enterKeyFieldActionPerformed"/>

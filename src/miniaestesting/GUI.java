@@ -33,7 +33,7 @@ public class GUI extends javax.swing.JFrame {
 
         encryptButton = new javax.swing.JButton();
         decryptButton = new javax.swing.JButton();
-        inputType = new javax.swing.JComboBox<String>();
+        inputType = new javax.swing.JComboBox<>();
         enterPlaintextField = new javax.swing.JTextField();
         enterKeyField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -78,17 +78,15 @@ public class GUI extends javax.swing.JFrame {
         inputType.setBounds(910, 110, 70, 50);
 
         enterPlaintextField.setFont(new java.awt.Font("SimSun", 0, 24)); // NOI18N
-        enterPlaintextField.setText("Enter Plaintext");
         enterPlaintextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterPlaintextFieldActionPerformed(evt);
             }
         });
         getContentPane().add(enterPlaintextField);
-        enterPlaintextField.setBounds(350, 110, 630, 50);
+        enterPlaintextField.setBounds(350, 110, 560, 50);
 
         enterKeyField.setFont(new java.awt.Font("SimSun", 0, 24)); // NOI18N
-        enterKeyField.setText("Enter Key");
         enterKeyField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterKeyFieldActionPerformed(evt);
