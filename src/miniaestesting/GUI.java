@@ -184,6 +184,7 @@ public class GUI extends javax.swing.JFrame {
             if (text.length()!=16 || (text.matches("[01]+")==false)){  //User has not entered anything. 
                 JOptionPane.showMessageDialog(null,"Please enter a hex value");
                 enterPlaintextField.requestFocusInWindow();
+            
             }
             
             else {
