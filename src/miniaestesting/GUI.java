@@ -185,6 +185,7 @@ public class GUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Please enter a hex value");
                 enterPlaintextField.requestFocusInWindow();
             
+            
             }
             
             else {
