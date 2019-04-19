@@ -33,9 +33,9 @@ public class GUI extends javax.swing.JFrame {
 
         encryptButton = new javax.swing.JButton();
         decryptButton = new javax.swing.JButton();
+        inputType = new javax.swing.JComboBox<String>();
         enterPlaintextField = new javax.swing.JTextField();
         enterKeyField = new javax.swing.JTextField();
-        inputType = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         outputField = new javax.swing.JTextArea();
         Background = new javax.swing.JLabel();
@@ -68,6 +68,15 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().add(decryptButton);
         decryptButton.setBounds(800, 240, 170, 40);
 
+        inputType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "String", "Binary", "Hex"}));
+        inputType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTypeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(inputType);
+        inputType.setBounds(910, 110, 70, 50);
+
         enterPlaintextField.setFont(new java.awt.Font("SimSun", 0, 24)); // NOI18N
         enterPlaintextField.setText("Enter Plaintext");
         enterPlaintextField.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +85,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(enterPlaintextField);
-        enterPlaintextField.setBounds(50, 110, 850, 50);
+        enterPlaintextField.setBounds(350, 110, 630, 50);
 
         enterKeyField.setFont(new java.awt.Font("SimSun", 0, 24)); // NOI18N
         enterKeyField.setText("Enter Key");
@@ -86,16 +95,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(enterKeyField);
-        enterKeyField.setBounds(50, 170, 930, 50);
-
-        inputType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "String", "Binary", "Hex"}));
-        inputType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputTypeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(inputType);
-        inputType.setBounds(910, 110, 90, 50);
+        enterKeyField.setBounds(350, 170, 630, 50);
 
         outputField.setColumns(20);
         outputField.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
@@ -105,7 +105,7 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(500, 300, 480, 410);
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/miniaestesting/Mini-Aes.png"))); // NOI18N
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/miniaestesting/Mini-Aes_1.png"))); // NOI18N
         Background.setText("jLabel1");
         getContentPane().add(Background);
         Background.setBounds(0, 0, 1062, 768);
