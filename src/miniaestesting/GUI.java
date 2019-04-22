@@ -7,7 +7,7 @@ package miniaestesting;
 import javax.swing.*;
 /**
  *
- * @author 1105864
+ * @author Augustus
  */
 
 public class GUI extends javax.swing.JFrame {
@@ -33,7 +33,7 @@ public class GUI extends javax.swing.JFrame {
 
         encryptButton = new javax.swing.JButton();
         decryptButton = new javax.swing.JButton();
-        inputType = new javax.swing.JComboBox<>();
+        inputType = new javax.swing.JComboBox<String>();
         enterPlaintextField = new javax.swing.JTextField();
         enterKeyField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -49,6 +49,7 @@ public class GUI extends javax.swing.JFrame {
         encryptButton.setBackground(new java.awt.Color(153, 51, 255));
         encryptButton.setForeground(new java.awt.Color(255, 51, 204));
         encryptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/miniaestesting/encrypt.png"))); // NOI18N
+        encryptButton.setToolTipText("Press to encrypt");
         encryptButton.setMargin(new java.awt.Insets(2, 13, 2, 13));
         encryptButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +61,7 @@ public class GUI extends javax.swing.JFrame {
 
         decryptButton.setBackground(new java.awt.Color(255, 51, 255));
         decryptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/miniaestesting/DecryptButton.png"))); // NOI18N
+        decryptButton.setToolTipText("Press to decrypt");
         decryptButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decryptButtonActionPerformed(evt);
@@ -68,6 +70,7 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().add(decryptButton);
         decryptButton.setBounds(800, 240, 170, 40);
 
+        inputType.setFont(new java.awt.Font("Source Code Pro", 0, 11)); // NOI18N
         inputType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "String", "Binary", "Hex"}));
         inputType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +80,8 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().add(inputType);
         inputType.setBounds(910, 110, 70, 50);
 
-        enterPlaintextField.setFont(new java.awt.Font("SimSun", 0, 24)); // NOI18N
+        enterPlaintextField.setFont(new java.awt.Font("Source Code Pro", 0, 24)); // NOI18N
+        enterPlaintextField.setToolTipText("Enter text to encrypt or decrypt");
         enterPlaintextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterPlaintextFieldActionPerformed(evt);
@@ -86,7 +90,8 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().add(enterPlaintextField);
         enterPlaintextField.setBounds(350, 110, 560, 50);
 
-        enterKeyField.setFont(new java.awt.Font("SimSun", 0, 24)); // NOI18N
+        enterKeyField.setFont(new java.awt.Font("Source Code Pro", 0, 24)); // NOI18N
+        enterKeyField.setToolTipText("Enter key in this field");
         enterKeyField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterKeyFieldActionPerformed(evt);
@@ -97,7 +102,9 @@ public class GUI extends javax.swing.JFrame {
 
         outputField.setColumns(20);
         outputField.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        outputField.setLineWrap(true);
         outputField.setRows(5);
+        outputField.setToolTipText("Output text will appear here");
         jScrollPane1.setViewportView(outputField);
 
         getContentPane().add(jScrollPane1);
@@ -122,7 +129,7 @@ public class GUI extends javax.swing.JFrame {
   
         else if (inputType.getSelectedItem().toString() == "String") { 
         text = enterPlaintextField.getText();
-        outputField.setText(encryption1.encryptString(text, key));// TODO add your handling code here:
+        outputField.setText(encryption1.encryptString(text, key));// Text has been line wraped so the text fills the box and travels down:
         }
         else if (inputType.getSelectedItem().toString() == "Binary") {
             text = enterPlaintextField.getText();

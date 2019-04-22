@@ -41,6 +41,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/miniaestesting/encrypt.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Press to encrypt"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 13, 2, 13]"/>
         </Property>
@@ -62,6 +63,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/miniaestesting/DecryptButton.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Press to decrypt"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decryptButtonActionPerformed"/>
@@ -74,6 +76,9 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="inputType">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Source Code Pro" size="11" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;String&quot;, &quot;Binary&quot;, &quot;Hex&quot;})" type="code"/>
         </Property>
@@ -93,8 +98,9 @@
     <Component class="javax.swing.JTextField" name="enterPlaintextField">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="SimSun" size="24" style="0"/>
+          <Font name="Source Code Pro" size="24" style="0"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Enter text to encrypt or decrypt"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enterPlaintextFieldActionPerformed"/>
@@ -108,8 +114,9 @@
     <Component class="javax.swing.JTextField" name="enterKeyField">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="SimSun" size="24" style="0"/>
+          <Font name="Source Code Pro" size="24" style="0"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Enter key in this field"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enterKeyFieldActionPerformed"/>
@@ -138,7 +145,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Monospaced" size="18" style="0"/>
             </Property>
+            <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="toolTipText" type="java.lang.String" value="Output text will appear here"/>
           </Properties>
         </Component>
       </SubComponents>
