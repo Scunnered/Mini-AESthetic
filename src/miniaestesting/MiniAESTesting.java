@@ -255,22 +255,17 @@ public String encryptHex(String startingHex, String startKey){
     
     this.finalString = "";  // Initialises finalString to an empty string
     this.keys = new KeySet(convertToArray(startKey));
-    int lengthAtStart = startingHex.length();
-    while(startingHex.length()<16){startingHex=startingHex+"0";}
-    System.out.println(startingHex);
-    String[] hexArray = convertToArrayHex(startingHex);
-    for (int i = 0; i < hexArray.length; i++) {
-        String hex;
-        String charAsBinaryString;
-        int convert = Integer.parseInt(hexArray[i],16);
-        charAsBinaryString = Integer.toBinaryString(convert);
-        while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;} // Add leading zeros to make it 16 long
-        character = convertToArray(charAsBinaryString);                         // Convert binary string to a 2x2 array of int
-        cipherState = encryptChar(character);                                   // Decrypt this array and return it
-        hex = convertToString(cipherState);
-        finalString += hex.format("%04x",(int)hex.charAt(0));
-    }
-    finalString = finalString.substring(0,lengthAtStart);
+    String charAsBinaryString;
+    String toString;
+    char toChar;
+    int convert = Integer.parseInt(startingHex,16);
+    charAsBinaryString = Integer.toBinaryString(convert);
+    while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;}
+    character = convertToArray(charAsBinaryString);                         // Convert binary string to a 2x2 array of int
+    cipherState = encryptChar(character);                                   // Decrypt this array and return it
+    toString = convertToString(cipherState);
+    toChar = toString.charAt(0);
+    finalString = String.format("%04x", (int) toChar);
     return finalString;
 }
 
@@ -278,22 +273,17 @@ public String decryptHex(String startingHex, String startKey){
     
     this.finalString = "";  // Initialises finalString to an empty string
     this.keys = new KeySet(convertToArray(startKey));
-    int lengthAtStart = startingHex.length();
-    while(startingHex.length()<16){startingHex=startingHex+"0";}
-    System.out.println(startingHex);
-    String[] hexArray = convertToArrayHex(startingHex);
-    for (int i = 0; i < hexArray.length; i++) {
-        String hex;
-        String charAsBinaryString;
-        int convert = Integer.parseInt(hexArray[i],16);
-        charAsBinaryString = Integer.toBinaryString(convert);
-        while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;} // Add leading zeros to make it 16 long
-        character = convertToArray(charAsBinaryString);                         // Convert binary string to a 2x2 array of int
-        cipherState = decryptChar(character);                                   // Decrypt this array and return it
-        hex = convertToString(cipherState);
-        finalString += hex.format("%04x",(int)hex.charAt(0));
-    }
-    finalString = finalString.substring(0,lengthAtStart);
+    String charAsBinaryString;
+    String toString;
+    char toChar;
+    int convert = Integer.parseInt(startingHex,16);
+    charAsBinaryString = Integer.toBinaryString(convert);
+    while(charAsBinaryString.length()<16){charAsBinaryString="0"+charAsBinaryString;}
+    character = convertToArray(charAsBinaryString);                         // Convert binary string to a 2x2 array of int
+    cipherState = decryptChar(character);                                   // Decrypt this array and return it
+    toString = convertToString(cipherState);
+    toChar = toString.charAt(0);
+    finalString = String.format("%04x", (int) toChar);
     return finalString;
 }
 
@@ -331,19 +321,7 @@ public static int[][] convertToArray(String toConvert) {
                                                                                 // Split a 16-bit binary string into four nibbles
         
         return newBlock;
-    }
-
-public static String[] convertToArrayHex(String toConvert) {
-        String[] newBlock = new String[4];                                       // Declare and initialise a new 2x2 array of int
-        
-        newBlock[0] = toConvert.substring(0,4);
-        newBlock[1] = toConvert.substring(4,8);
-        newBlock[2] = toConvert.substring(8,12);
-        newBlock[3] = toConvert.substring(12,16);
-                                                                                // Split a 16-bit binary string into four nibbles
-        
-        return newBlock;
-    }
+}
 
 //-----------------------------//Methods//-----------------------------//
 
