@@ -33,7 +33,7 @@ public class GUI extends javax.swing.JFrame {
 
         encryptButton = new javax.swing.JButton();
         decryptButton = new javax.swing.JButton();
-        inputType = new javax.swing.JComboBox<String>();
+        inputType = new javax.swing.JComboBox<>();
         enterPlaintextField = new javax.swing.JTextField();
         enterKeyField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -113,7 +113,7 @@ public class GUI extends javax.swing.JFrame {
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/miniaestesting/Mini-Aes_1.png"))); // NOI18N
         Background.setText("jLabel1");
         getContentPane().add(Background);
-        Background.setBounds(0, 0, 1062, 768);
+        Background.setBounds(0, 0, 1069, 768);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -124,16 +124,16 @@ public class GUI extends javax.swing.JFrame {
         key = enterKeyField.getText();
         
         if (key.length()!=16 || (key.matches("[01]+")==false)){  //User have not entered anything. 
-        JOptionPane.showMessageDialog(null,"Please enter a 16-bit binary key");
+        JOptionPane.showMessageDialog(null,"Please ensure that the key is a 16-bit binary number!");
         enterKeyField.requestFocusInWindow();}
   
-        else if (inputType.getSelectedItem().toString() == "String") { 
+        else if (inputType.getSelectedItem().toString().equals("String")) { 
         text = enterPlaintextField.getText();
         outputField.setText(encryption1.encryptString(text, key));// Text has been line wraped so the text fills the box and travels down:
         }
-        else if (inputType.getSelectedItem().toString() == "Binary") {
+        else if (inputType.getSelectedItem().toString().equals("Binary")) {
             text = enterPlaintextField.getText();
-            if (text.length()!=16 || (text.matches("[01]+")==false)){  //User has not entered anything. 
+            if (text.length()>16 || (text.matches("[01]+")==false)){  //User has not entered anything. 
                 JOptionPane.showMessageDialog(null,"Please enter a 16-bit binary plaintext");
                 enterPlaintextField.requestFocusInWindow();
             }
@@ -142,21 +142,20 @@ public class GUI extends javax.swing.JFrame {
                 outputField.setText(encryption1.encryptBinary(binary,key));// TODO add your handling code here:
             }
         } 
-        else if (inputType.getSelectedItem().toString() == "Hex") {
+        else if (inputType.getSelectedItem().toString().equals("Hex")) {
             text = enterPlaintextField.getText();
-            /*
-            if (text.length()!=16 || (text.matches("[01]+")==false)){  //User has not entered anything. 
-                JOptionPane.showMessageDialog(null,"Please enter a hex value");
+            if (text.length()>4 || !text.matches("[0-9A-Fa-f]+")){  //User has not entered anything. 
+                JOptionPane.showMessageDialog(null,"Please enter a 4-digit hex value");
                 enterPlaintextField.requestFocusInWindow();
             }
             else {
-            */
+            
                 text = enterPlaintextField.getText();
                 outputField.setText(encryption1.encryptHex(text, key));// TODO add your handling code here:
             
         } 
     }//GEN-LAST:event_encryptButtonActionPerformed
-        
+    }   
         
     private void decryptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decryptButtonActionPerformed
         MiniAES encryption1 = new MiniAES();
@@ -164,17 +163,16 @@ public class GUI extends javax.swing.JFrame {
         key = enterKeyField.getText();
         
         if (key.length()!=16 || (key.matches("[01]+")==false)){  //User have not entered anything. 
-        JOptionPane.showMessageDialog(null,"Please enter a 16-bit binary number");
+        JOptionPane.showMessageDialog(null,"Please ensure that the key is a 16-bit binary number!");
         enterKeyField.requestFocusInWindow();}
   
-        else if (inputType.getSelectedItem().toString() == "String") {
-            System.out.println("Hello");
+        else if (inputType.getSelectedItem().toString().equals("String")) {
             text = enterPlaintextField.getText();
             outputField.setText(encryption1.decryptString(text, key));// TODO add your handling code here:
         }
-        else if (inputType.getSelectedItem().toString() == "Binary") {
+        else if (inputType.getSelectedItem().toString().equals("Binary")) {
             text = enterPlaintextField.getText();
-            if (text.length()!=16 || (text.matches("[01]+")==false)){  //User has not entered anything. 
+            if (text.length()>16 || (text.matches("[01]+")==false)){  //User has not entered anything. 
                 JOptionPane.showMessageDialog(null,"Please enter a 16-bit binary plaintext");
                 enterPlaintextField.requestFocusInWindow();
             }
@@ -183,24 +181,22 @@ public class GUI extends javax.swing.JFrame {
                 outputField.setText(encryption1.decryptBinary(binary,key));// TODO add your handling code here:
             }
         } 
-        else if (inputType.getSelectedItem().toString() == "Hex") {
+        else if (inputType.getSelectedItem().toString().equals("Hex")) {
             text = enterPlaintextField.getText();
-            /*
-            if (text.length()!=16 || (text.matches("[01]+")==false)){  //User has not entered anything. 
-                JOptionPane.showMessageDialog(null,"Please enter a hex value");
+            
+            if (text.length()>4 || !text.matches("[0-9A-Fa-f]+")){  //User has not entered anything. 
+                JOptionPane.showMessageDialog(null,"Please enter a 4-digit hex value");
                 enterPlaintextField.requestFocusInWindow();
-            
-            
             }
             
             else {
-            */
+            
                 text = enterPlaintextField.getText();
                 outputField.setText(encryption1.decryptHex(text, key));// TODO add your handling code here:
             
         } 
     }//GEN-LAST:event_decryptButtonActionPerformed
-
+    }
     
     private void enterPlaintextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterPlaintextFieldActionPerformed
         // TODO add your handling code here:

@@ -115,9 +115,7 @@ class Substitutions{
     }
     
     return nextCipherState;    
-}
-    
-
+}    
 }     
     
     
@@ -224,6 +222,7 @@ public String decryptString(String startingString, String startKey){
 }
 
 public String encryptBinary(String startingString, String startKey){
+    while(startingString.length()<16){startingString="0"+startingString;}
     
     this.finalString = "";                                                      // Initialises finalString to an empty string
     this.keys = new KeySet(convertToArray(startKey));
@@ -238,6 +237,7 @@ public String encryptBinary(String startingString, String startKey){
 }
 
 public String decryptBinary(String startingString, String startKey){
+    while(startingString.length()<16){startingString="0"+startingString;}
     
     this.finalString = "";                                                      // Initialises finalString to an empty string
     this.keys = new KeySet(convertToArray(startKey));
